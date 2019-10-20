@@ -9,6 +9,7 @@
         "usuario": "Miguel de Cervantes",
         "comentarios": [],
         "favorito": true,
+        "imagen": "https://cdn.pixabay.com/photo/2019/10/01/09/38/desert-4517723_960_720.jpg",
         "id": 1
       },
       {
@@ -20,6 +21,7 @@
         "usuario": "Aristóteles",
         "comentarios": [],
         "favorito": false,
+        "imagen": "https://cdn.pixabay.com/photo/2019/10/01/10/17/venice-4517780_960_720.jpg",
         "id": 2
       },
       {
@@ -30,6 +32,7 @@
         "categoria": "Ciencia",
         "usuario": "Perico de los Palotes",
         "favorito": false,
+        "imagen": "https://cdn.pixabay.com/photo/2019/08/10/03/15/the-scenery-4396131_960_720.jpg",
         "id": 3
       }
     ],
@@ -56,6 +59,7 @@
               }
           ],
           "favorito": true,
+          "imagen": "https://cdn.pixabay.com/photo/2019/10/01/09/38/desert-4517723_960_720.jpg",
           "id": 1
         },
         {
@@ -76,6 +80,7 @@
               }
           ],
           "favorito": false,
+          "imagen": "https://cdn.pixabay.com/photo/2019/10/01/10/17/venice-4517780_960_720.jpg",
           "id": 2
         },
         {
@@ -87,6 +92,7 @@
           "usuario": "Perico de los Palotes",
           "comentarios": [],
           "favorito": false,
+          "imagen": "https://cdn.pixabay.com/photo/2019/08/10/03/15/the-scenery-4396131_960_720.jpg",
           "id": 3
         }
       ]
