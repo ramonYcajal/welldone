@@ -1,0 +1,62 @@
+{
+    "articulos": [
+      {
+        "titulo": "Título del artículo 1",
+        "texto_introduccion": "Está es una introducción del articulo 1",
+        "contenido": "Este es el contenido relacionado al artículo 1 de la publicación de WellDone. Por lo general ha de ser un texto denso",
+        "estado": "publicado",
+        "fecha_publicacion": "19-10-2019 16:45:00",
+        "categoria": "Tecnología",
+        "usuario": "Miguel de Cervantes",
+        "comentarios": [
+            {
+                "comentario": "Este es el primer comentario del artículo 1",
+                "id_comentario": 1
+            },
+            {
+                "comentario": "Este otro comentario del artículo 1",
+                "id_comentario": 2
+            },
+            {
+                "comentario": "Otro comentario cualquiera del artículo 1",
+                "id_comentario": 3
+            }
+        ],
+        "favorito": true,
+        "id": 1
+      },
+      {
+        "titulo": "Título del artículo 2",
+        "texto_introduccion": "Está es una introducción del articulo 2",
+        "contenido": "Este es el contenido relacionado al artículo 2 de la publicación de WellDone. Por lo general ha de ser un texto denso",
+        "estado": "publicado",
+        "fecha_publicacion": "19-10-2019 18:40:00",
+        "categoria": "Humanidades",
+        "usuario": "Aristóteles",
+        "comentarios": [
+            {
+                "comentario": "Este es el primer comentario del artículo 2",
+                "id_comentario": 4
+            },
+            {
+                "comentario": "Este otro comentario del artículo 2",
+                "id_comentario": 5
+            }
+        ],
+        "favorito": false,
+        "id": 2
+      },
+      {
+        "titulo": "Título del artículo 3",
+        "texto_introduccion": "Está es una introducción del articulo 3",
+        "contenido": "Este es el contenido relacionado al artículo 3 de la publicación de WellDone. Por lo general ha de ser un texto denso",
+        "estado": "borrador",
+        "fecha_publicacion": "19-10-2019 20:00:00",
+        "categoria": "Ciencia",
+        "usuario": "Perico de los Palotes",
+        "comentarios": [],
+        "favorito": false,
+        "id": 3
+      }
+    ]
+  }
