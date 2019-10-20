@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
 
@@ -14,11 +14,11 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
     return(
         <div className="col-12 col-md-6 col-lg-3 mb-3" key={ id }>
             <div className="card shadow align-items-strech justify-content-between">
-                <NavLink to={`/articulos/${ id }`}>
+                <Link to={`/articulos/${ id }`}>
                     <div className="card-header mh-100 text-center  text-white bg-dark h6 d-flex align-items-center justify-content-center drv-title">
                         <span>{ titulo }</span>
                     </div>
-                </NavLink>
+                </Link>
                 <div className="card-body m-0 p-1">
                     <figure className="m-0">
                         <img className="img-fluid w-100 " src={`${ imagen }`} alt={ articulo.titulo } />
