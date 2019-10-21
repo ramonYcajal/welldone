@@ -18,7 +18,6 @@ const HomePage = ({ articulos, setRecargarArticulos }) => {
                 }
             </div>
         </Fragment>
-        
     )
 }
 
