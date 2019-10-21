@@ -20,6 +20,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     const [ categorias, setCategorias ] = useState([]);
 
     const fechaPublicacion = Date.now();
+    const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fechaPublicacion );
     
     const [ error, setError ] = useState( false );
 
@@ -103,7 +104,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     return(
         <div className="col-md-8 mx-auto ">
             <h1 className="text-center">Nuevo Artículo</h1>
-            <span  className="text-center"><small>{ fechaPublicacion }</small></span>
+            <span  className="text-center"><small>{ fechaFormateada }</small></span>
             {( error ) ? <Error mensaje='Todos los campos son obligatorios' /> : null}
             <form
                 className="mt-5"
