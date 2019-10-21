@@ -10,10 +10,18 @@ import ArticleDetailPage from './components/ArticleDetailPage';
 import UserDetailPage from './components/UserDetailPage';
 import UserUpdate from './components/UserUpdate';
 import CategoriesPage from './components/CategoriesPage';
-
+import NewArticlePage from './components/NewArticlePage';
 
 function Welldone() {
 
+  const INITIAL_USER = {
+    "id" : 0,
+    "usuario" : '',
+    "logado" : false
+  }
+
+  //state
+  const [ usuario, setUsuario ] = useState( INITIAL_USER );
   const [ articulos, setArticulos ] = useState([]);
   const [ recargarArticulos, setRecargarArticulos ] = useState( true );
 
@@ -24,6 +32,9 @@ function Welldone() {
         const resultadoArticulos = await axios.get( 'http://localhost:4000/articulos' );
 
         setArticulos( resultadoArticulos.data );
+
+        //TODO: hay que recibir el usuario cuando se implemente la validación para pasarlo en la creación del artículo
+        setUsuario( 'Dummy' );
       }
 
       consultarApi();
@@ -44,6 +55,16 @@ function Welldone() {
                 ) } 
           />
           <Route exact path="/categorias" component={ CategoriesPage } />
+          <Route exact path="/articulos/nuevo" 
+                 render={() => (
+                   <NewArticlePage
+                    usuario={ usuario }
+                    setRecargarArticulos={ setRecargarArticulos }
+                   />
+                 )
+
+                 } 
+          />
           <Route exact path="/articulos/:id" component={ ArticleDetailPage } />
           <Route exact path="/usuarios/:id" component={ UserDetailPage } />
           <Route exact path="/usuarios/editar/:id" component={ UserUpdate } />
