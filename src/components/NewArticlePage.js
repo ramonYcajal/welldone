@@ -20,10 +20,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     const [ categorias, setCategorias ] = useState([]);
 
     const fechaPublicacion = Date.now();
-    //setFechaPublicacion( `${t.getDate() }-${ t.getMonth() }-${ t.getFullYear() } ${ t.getHours() }:${ t.getMinutes() }` );
-    console.log( fechaPublicacion );
-    console.log(new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fechaPublicacion ));
-
+    
     const [ error, setError ] = useState( false );
 
     const getTypeArticle = e => {
