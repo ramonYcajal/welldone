@@ -5,13 +5,14 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
 
     const { id,
             titulo,
-            fecha_publicacion,
+            fecha_creacion,
             imagen,
-            usuario,
+            // usuario,
+            nombre,
             texto_introduccion
         } = articulo;
 
-    const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fecha_publicacion );
+    // const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fecha_creacion );
 
     return(
         <div className="col-12 col-md-6 col-lg-3 mb-3" key={ id }>
@@ -28,7 +29,7 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
                 </div>
                 <div className="row p-3 mt-0">
                     <div className="col-12 pl-3 text-left">
-                        <small>{ fechaFormateada }</small>
+                        <small>{ fecha_creacion }</small>
                     </div>
                 </div>
                 <div className="row p-3 mt-0">
@@ -38,7 +39,7 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
                 </div>
                 <div className="row p-3 mt-0">
                     <div className="col-12 text-right">
-                        <pre>{ usuario }</pre>
+                        <pre>{ nombre }</pre>
                     </div>
                 </div>
             </div>

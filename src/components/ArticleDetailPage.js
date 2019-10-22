@@ -12,8 +12,8 @@ const ArticleDetailPage = props => {
 
         const consultarApi = async () => {
             // realizamos la consulta al API
-            const resultado = await axios.get( `http://localhost:4000/articulo/${ idArticulo }` );
-
+            const resultado = await axios.get( `http://api.elmoribundogarci.com/articulos/${ idArticulo }` );
+            console.log(resultado)
             setArticulo( resultado.data );
         }
     
@@ -22,7 +22,7 @@ const ArticleDetailPage = props => {
        
       }, [ idArticulo ]);
 
-      console.log(articulo.comentarios)
+      //console.log(articulo.comentarios)
 
     return(
         <div className="row mx-0 pb-3 px-0 wrapper-info">
@@ -35,7 +35,7 @@ const ArticleDetailPage = props => {
                 <div className="mh-100">
                     <div className="mh-100 mt-1 p-3 text-center text-white bg-dark h4  align-items-center justify-content-center drv-title shadow">
                         <span className="d-block w-100">{ articulo.titulo }</span>
-                        <small className="d-block w-100 tagline-text">{ articulo.usuario }</small>
+                        <small className="d-block w-100 tagline-text">{ articulo.nombre }</small>
                     </div>
                     {/* <div className="text-right mr-2">
                         {
@@ -45,13 +45,13 @@ const ArticleDetailPage = props => {
                         }
                     </div> */}
                     <div className="m-0 p-3 text-right">
-                        <small>{ articulo.fecha_publicacion }</small>
+                        <small>{ articulo.fecha_creacion }</small>
                     </div>
                     <div className="m-0 p-3 text-justify">
                         <h4>Contenido</h4>
                         <p>{ articulo.contenido }</p>
                     </div>
-                    <div className="mt-3 p-3">
+                    {/* <div className="mt-3 p-3">
                         <h4>Comentarios</h4>
                         <ul className="list-unstyled row px-3 mt-3">
                             {
@@ -60,7 +60,7 @@ const ArticleDetailPage = props => {
                                 // )
                             }
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
