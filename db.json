@@ -4,12 +4,7 @@
       "titulo": "Título del artículo 1",
       "texto_introduccion": "Está es una introducción del articulo 1",
       "contenido": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus volutpat elementum. In hac habitasse platea dictumst. Etiam quis velit blandit, mollis velit et, finibus mauris. Fusce semper mattis finibus. Duis vehicula, augue vel ullamcorper tincidunt, felis urna eleifend ante, congue venenatis purus nulla nec velit. Nam a elit sit amet quam cursus scelerisque non in lectus. Etiam volutpat ipsum et cursus aliquam. Sed tristique volutpat nisl, eu tincidunt sapien gravida at.",
-      "estado": "publicado",
-      "fecha_publicacion": 1571667144474,
       "categoria": "Tecnología",
-      "usuario": "Miguel de Cervantes",
-      "comentarios": [],
-      "favorito": true,
       "imagen": "https://cdn.pixabay.com/photo/2019/10/01/09/38/desert-4517723_960_720.jpg",
       "id": 1
     },

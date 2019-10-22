@@ -2,7 +2,10 @@ import React, { useState, Fragment } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+//axios.defaults.baseURL = 'api.elmoribundogarci.com';
+
 const SignUp = () => {
+    
 
     const [ username, setUsername ] = useState('');
     const [ email, setEmail ] = useState('');
@@ -11,16 +14,33 @@ const SignUp = () => {
     const realizarAlta = async e => {
         e.preventDefault();
         
+        const headers = {
+            'Content-Type': 'application/json'
+          };
+
         const authentication = {
             username,
             password,
             email
-        }
+        };
 
         try{
             console.log(authentication)
-            // const resultado = await axios.post( '/api/auth/token/login/', authentication );
-            // console.log( resultado )
+            //const resultado = await axios.post( 'http://api.elmoribundogarci.com/api/auth/users/', authentication, headers );
+            const resultado = await axios.post({
+                                        url: 'http://api.elmoribundogarci.com/api/auth/users/', 
+                                        data: authentication, 
+                                        headers: headers
+                                    });
+            if( resultado.status === 201 ){
+                Swal.fire(
+                        'Usuario Creado',
+                        'El usuario se creó correctamente',
+                        'success'
+                    );
+                console.log( resultado )
+            }
+            
         } catch( error ) {
             console.log( error );
 
