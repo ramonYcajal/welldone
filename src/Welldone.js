@@ -11,6 +11,7 @@ import UserDetailPage from './components/UserDetailPage';
 import UserUpdate from './components/UserUpdate';
 import CategoriesPage from './components/CategoriesPage';
 import NewArticlePage from './components/NewArticlePage';
+import EditarArticulo from './components/EditarArticulo';
 
 function Welldone() {
 
@@ -66,6 +67,22 @@ function Welldone() {
                  } 
           />
           <Route exact path="/articulos/:id" component={ ArticleDetailPage } />
+          <Route exact path="/articulos/editar/:id"
+            render={ props => {
+              // obtenemos el id del artículo
+              const id = parseInt( props.match.params.id );
+              
+              const articulo = articulos.filter( articulo => articulo.id === id );
+
+              return(
+                <EditarArticulo
+                  articulo={ articulo[ 0 ] }
+                  setRecargarArticulos={ setRecargarArticulos }
+                />
+              );
+            }
+            }
+          />
           <Route exact path="/usuarios/:id" component={ UserDetailPage } />
           <Route exact path="/usuarios/editar/:id" component={ UserUpdate } />
           <Route exact path="/"

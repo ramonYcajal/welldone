@@ -76,7 +76,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
 
         // redirigimos al usuario a productos
         setRecargarArticulos( true );
-        //history.push( '/' );
+        history.push( '/' );
 
     }
 
