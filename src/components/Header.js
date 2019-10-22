@@ -10,10 +10,10 @@ const Header = () => (
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <NavLink 
-                        to='/alta-usuarios'
+                        to='/usuario/nuevo'
                         className="nav-link"
                         activeClassName="active"
-                    >Alta de Usuarios</NavLink>
+                    >Sign Up</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink 

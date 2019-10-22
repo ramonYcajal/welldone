@@ -12,6 +12,7 @@ import UserUpdate from './components/UserUpdate';
 import CategoriesPage from './components/CategoriesPage';
 import NewArticlePage from './components/NewArticlePage';
 import EditarArticulo from './components/EditarArticulo';
+import Articulos from './components/Articulos';
 
 function Welldone() {
 
@@ -50,9 +51,16 @@ function Welldone() {
       <Header />
       <main className="container mt-5">
         <Switch>
-          <Route exact path="/alta-usuarios" 
+          <Route exact path="/usuario/nuevo" 
                 render={ () => (
                   <SignUpPage />
+                ) } 
+          />
+          <Route exact path="/usuario/articulos" 
+                render={ () => (
+                  <Articulos
+                    articulos={ articulos }
+                  />
                 ) } 
           />
           <Route exact path="/categorias" component={ CategoriesPage } />

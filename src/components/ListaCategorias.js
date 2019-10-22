@@ -1,8 +1,13 @@
 import React from 'react';
 
 const ListaCategorias = ({ categoria }) => {
+
     return(
-        <option>{ categoria }</option>
+
+                <option>{ categoria }</option>
+
+       
+        
     )
 }
 
