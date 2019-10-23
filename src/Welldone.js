@@ -32,7 +32,7 @@ function Welldone() {
       const consultarApi = async () => {
         // realizamos la consulta al API
         const resultadoArticulos = await axios.get( 'http://api.elmoribundogarci.com/articulos/' );
-        console.log(resultadoArticulos)
+
         setArticulos( resultadoArticulos.data.results );
 
         //TODO: hay que recibir el usuario cuando se implemente la validación para pasarlo en la creación del artículo

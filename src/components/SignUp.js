@@ -1,10 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { withRouter } from 'react-router-dom';
 
-//axios.defaults.baseURL = 'api.elmoribundogarci.com';
-
-const SignUp = () => {
+const SignUp = ({ history }) => {
     
 
     const [ username, setUsername ] = useState('');
@@ -25,9 +24,9 @@ const SignUp = () => {
         };
 
         try{
-            console.log(authentication)
             //const resultado = await axios.post( 'http://api.elmoribundogarci.com/api/auth/users/', authentication, headers );
-            const resultado = await axios.post({
+            const resultado = await axios({
+                                        method: 'post',
                                         url: 'http://api.elmoribundogarci.com/api/auth/users/', 
                                         data: authentication, 
                                         headers: headers
@@ -38,7 +37,8 @@ const SignUp = () => {
                         'El usuario se creó correctamente',
                         'success'
                     );
-                console.log( resultado )
+                // redirigimos al usuario a artículos
+                history.push( '/' );
             }
             
         } catch( error ) {
@@ -101,4 +101,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default withRouter( SignUp );

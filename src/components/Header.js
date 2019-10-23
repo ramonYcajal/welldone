@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import LoginForm from './LoginForm';
+
 const Header = () => (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
@@ -23,6 +25,7 @@ const Header = () => (
                     >Categorías</NavLink>
                 </li> */}
             </ul>
+            <LoginForm />
         </div>
     </nav>
 );
