@@ -26,7 +26,10 @@ function Welldone() {
     if( recargarArticulos ){
       const consultarApi = async () => {
         // realizamos la consulta al API
-        const resultadoArticulos = await axios.get( 'http://api.elmoribundogarci.com/articulos/' );
+        const resultadoArticulos = await axios({ 
+                                            method: 'get',
+                                            url: 'http://api.elmoribundogarci.com/articulos/' 
+                                          });
 
         setArticulos( resultadoArticulos.data.results );
       }
@@ -56,7 +59,7 @@ function Welldone() {
           <Route exact path="/usuario/articulos" 
                 render={ () => (
                   <Articulos
-                    articulos={ articulos }
+                    usuario={ usuario }
                   />
                 ) } 
           />

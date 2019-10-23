@@ -56,7 +56,6 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
                         username: userData.data.username,
                         id: userData.data.id
                     })
-                    console.log(userData)
                 }
             }
 
