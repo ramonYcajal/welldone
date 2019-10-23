@@ -58,7 +58,8 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
                     
                     setUsuario({
                         username: userData.data.username,
-                        id: userData.data.id
+                        id: userData.data.id,
+                        token: resultado.data.auth_token
                     })
                 }
             }
@@ -72,7 +73,7 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
                 items.forEach(function(item) {
                         var value = error.response.data[givenError][item];
                         var returnError =  givenError + ' : ';
-                        if(givenError == 'non_field_errors')returnError='';
+                        if(givenError === 'non_field_errors')returnError='';
                         output += '<p>' + returnError + value + '</p>';
                     });
                 });

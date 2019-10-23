@@ -46,19 +46,30 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
         try{
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': `Token `
+                'Authorization': `Token ${ usuario.token }`
               };
 
-            const resultado = await axios.post( 'http://api.elmoribundogarci.com/articulos/', {
-            titulo,
-            texto_introduccion: textoIntro,
-            contenido,
-            estado: tipoArticulo,
-            fecha_publicacion: fechaPublicacion,
-            categoria,
-            usuario,
-            imagen
-            } );
+            const data = {
+                titulo,
+                texto_introduccion: textoIntro,
+                contenido,
+                estado: tipoArticulo,
+                categoria,
+                imagen
+            }
+
+            console.log(data)
+
+            const resultado = await axios({
+                method: 'post',
+                url: 'http://api.elmoribundogarci.com/articulos/',
+                data,
+                headers,
+                transformResponse: [function (data) {
+                    return data;
+                  }],
+                responseType: 'json'
+            });
 
             if( resultado.status === 201 ){
                 Swal.fire(
@@ -66,36 +77,51 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                     'El artículo se creó correctamente',
                     'success'
                  );
+
+                 setRecargarArticulos( true );
             }
 
         } catch(error) {
-            console.log( error );
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                var output = '';
+                var readErrors = Object.keys(error.response.data);
+                readErrors.forEach(function(givenError) {
+                var items = Object.keys(error.response.data[givenError]);
+                items.forEach(function(item) {
+                        var value = error.response.data[givenError][item];
+                        output += '<p>' + givenError+' : ' + value + '</p>';
+                    });
+                });
 
+              } 
+            //console.log( error );            
             Swal.fire({
                 type: 'error',
                 title: 'Error',
-                text: 'Hubo un error, vuelve a intentarlo'
-            })
+                html: output
+            });
 
         }
 
         // redirigimos al usuario a artículos
-        setRecargarArticulos( true );
-        history.push( '/' );
+        // history.push( '/' );
 
     }
 
     useEffect(() => {
         // consultamos el API para obtener el listado de categorias
         const consultarCategoriasApi = async () => {
-            const resultado = await axios.get( 'http://localhost:4000/categorias' );
+            const resultado = await axios.get( 'http://api.elmoribundogarci.com/categorias/' );
  
             const categoriasFinal = [
                 {
-                    "categoria" : "Seleccione Categoría...",
+                    "nombre" : "Seleccione Categoría...",
                     "id" : 0
                 },
-                ...resultado.data
+                ...resultado.data.results
             ]
 
             setCategorias( categoriasFinal );
@@ -109,7 +135,6 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     return(
         <div className="col-md-8 mx-auto ">
             <h1 className="text-center">Nuevo Artículo</h1>
-            <span  className="text-center"><small>{ fechaFormateada }</small></span>
             {( error ) ? <Error mensaje='Todos los campos son obligatorios' /> : null}
             <form
                 className="mt-5"
@@ -125,9 +150,6 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                         onChange={ e => setTitulo( e.target.value ) }
                     />
                 </div>
-                {
-                    //TODO: ver si uncluimos obligatoriedad en la introducción de la imagen
-                }
                 <div className="form-group">
                     <label>Imagen</label>
                     <input 
@@ -166,7 +188,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                             categorias.map(categoria => (
                                 <ListaCategorias
                                     key={ categoria.id }
-                                    categoria={ categoria.categoria }
+                                    categoria={ categoria }
                                 />
                             ))
                         }

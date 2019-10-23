@@ -4,7 +4,7 @@ const ListaCategorias = ({ categoria }) => {
 
     return(
 
-                <option>{ categoria }</option>
+                <option value={ categoria.id }>{ categoria.nombre }</option>
 
        
         
