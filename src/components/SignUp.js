@@ -24,14 +24,19 @@ const SignUp = ({ history }) => {
         };
 
         try{
-            //const resultado = await axios.post( 'http://api.elmoribundogarci.com/api/auth/users/', authentication, headers );
             const resultado = await axios({
-                                        method: 'post',
-                                        url: 'http://api.elmoribundogarci.com/api/auth/users/', 
-                                        data: authentication, 
-                                        headers: headers
-                                    });
+                method: 'post',
+                url: 'http://api.elmoribundogarci.com/api/auth/users/', 
+                data: authentication, 
+                headers: headers,
+                transformResponse: [function (data) {
+                    return data;
+                  }],
+                responseType: 'json'
+            });
             if( resultado.status === 201 ){
+                console.log('obtenemos el resultado con los datos de usuario creados');
+                console.log(resultado.data);
                 Swal.fire(
                         'Usuario Creado',
                         'El usuario se creó correctamente',
@@ -42,12 +47,26 @@ const SignUp = ({ history }) => {
             }
             
         } catch( error ) {
-            console.log( error );
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                var output = '';
+                var readErrors = Object.keys(error.response.data);
+                readErrors.forEach(function(givenError) {
+                var items = Object.keys(error.response.data[givenError]);
+                items.forEach(function(item) {
+                        var value = error.response.data[givenError][item];
+                        output += '<p>' + givenError+' : ' + value + '</p>';
+                    });
+                });
 
+              } 
+            //console.log( error );            
             Swal.fire({
                 type: 'error',
                 title: 'Error',
-                text: 'No se ha podido dar el alta, vuelva a intentarlo'
+                html: output
             });
         }
 

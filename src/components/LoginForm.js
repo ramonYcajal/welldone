@@ -24,7 +24,11 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
                 method: 'post',
                 url: 'http://api.elmoribundogarci.com/api/auth/token/login/', 
                 data: authentication, 
-                headers: headers
+                headers: headers,
+                transformResponse: [function (data) {
+                    return data;
+                  }],
+                responseType: 'json'
             });
 
             if( resultado.status === 200 ){
@@ -61,10 +65,21 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
 
         } catch( error ) {
             console.log( error );
+            var output = '';
+                var readErrors = Object.keys(error.response.data);
+                readErrors.forEach(function(givenError) {
+                var items = Object.keys(error.response.data[givenError]);
+                items.forEach(function(item) {
+                        var value = error.response.data[givenError][item];
+                        var returnError =  givenError + ' : ';
+                        if(givenError == 'non_field_errors')returnError='';
+                        output += '<p>' + returnError + value + '</p>';
+                    });
+                });
             Swal.fire({
                 type: 'error',
                 title: 'Error',
-                text: 'No se ha podido realizar el login, vuelva a intentarlo'
+                html: output
             });
             setIsAuthenticated( false );
         }
