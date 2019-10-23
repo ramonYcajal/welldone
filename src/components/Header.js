@@ -3,8 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
 import LogOutForm from './LoginOutForm';
+import WellcomeUser from './WellcomeUser';
 
-const Header = ({ isAuthenticated, setIsAuthenticated }) => {
+const Header = ({ isAuthenticated, setIsAuthenticated, usuario, setUsuario }) => {
 
     const [ myToken, setMyToken ] =  useState('');
 
@@ -24,24 +25,33 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                         >Sign Up</NavLink>
                     </li>
                 }
-                {/* <li className="nav-item">
+                { isAuthenticated &&
+                <li className="nav-item">
                     <NavLink 
-                        to='/categorias'
+                        to='/usuario/articulos'
                         className="nav-link"
                         activeClassName="active"
-                    >Categorías</NavLink>
-                </li> */}
+                    >Mis Artículos</NavLink>
+                </li>
+                }
             </ul>
+            { isAuthenticated &&
+                    <WellcomeUser
+                        usuario={ usuario }
+                    />
+                }
             { !isAuthenticated &&
                 <LoginForm 
                     setIsAuthenticated={ setIsAuthenticated }
                     setMyToken={ setMyToken }
+                    setUsuario={ setUsuario }
                 />
             }
             {isAuthenticated &&
                 <LogOutForm 
                     setIsAuthenticated={ setIsAuthenticated }
                     myToken={ myToken }
+                    setUsuario={ setUsuario }
                 />
             }
         </div>

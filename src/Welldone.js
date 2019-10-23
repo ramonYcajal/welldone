@@ -16,14 +16,8 @@ import Articulos from './components/Articulos';
 
 function Welldone() {
 
-  const INITIAL_USER = {
-    "id" : 0,
-    "usuario" : '',
-    "logado" : false
-  }
-
   //state
-  const [ usuario, setUsuario ] = useState( INITIAL_USER );
+  const [ usuario, setUsuario ] = useState({});
   const [ articulos, setArticulos ] = useState([]);
   const [ recargarArticulos, setRecargarArticulos ] = useState( true );
   const [ isAuthenticated, setIsAuthenticated ] = useState( false );
@@ -35,9 +29,6 @@ function Welldone() {
         const resultadoArticulos = await axios.get( 'http://api.elmoribundogarci.com/articulos/' );
 
         setArticulos( resultadoArticulos.data.results );
-
-        //TODO: hay que recibir el usuario cuando se implemente la validación para pasarlo en la creación del artículo
-        setUsuario( 'Dummy' );
       }
 
       consultarApi();
@@ -52,6 +43,8 @@ function Welldone() {
       <Header 
         isAuthenticated={ isAuthenticated }
         setIsAuthenticated={ setIsAuthenticated }
+        usuario={ usuario }
+        setUsuario={ setUsuario }
       />
       <main className="container mt-5">
         <Switch>

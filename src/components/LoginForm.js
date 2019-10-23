@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
+const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -28,15 +28,37 @@ const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
             });
 
             if( resultado.status === 200 ){
-                setIsAuthenticated( true );
-                Swal.fire(
-                        'Login Correcto',
-                        'El usuario se ha logado correctamente',
-                        'success'
-                    );
-            }
+                
+                const token = `Token ${ resultado.data.auth_token }`;
+    
+                const userHeaders = {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                    };
+    
+                const userData = await axios({
+                    method: 'get',
+                    url: 'http://api.elmoribundogarci.com/api/auth/users/me/', 
+                    headers: userHeaders
+                });
 
-            setMyToken( resultado.data.auth_token );
+                if( userData.status === 200 ){
+                    setIsAuthenticated( true );
+
+                    Swal.fire(
+                            'Login Correcto',
+                            'El usuario se ha logado correctamente',
+                            'success'
+                        );
+                    setMyToken( resultado.data.auth_token );
+                    
+                    setUsuario({
+                        username: userData.data.username,
+                        id: userData.data.id
+                    })
+                    console.log(userData)
+                }
+            }
 
         } catch( error ) {
             console.log( error );
@@ -45,6 +67,7 @@ const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
                 title: 'Error',
                 text: 'No se ha podido realizar el login, vuelva a intentarlo'
             });
+            setIsAuthenticated( false );
         }
         
     }

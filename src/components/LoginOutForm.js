@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom';
 
-const LoginForm = ({ setIsAuthenticated, myToken, history }) => {
+const LoginForm = ({ setIsAuthenticated, myToken, setUsuario,  history }) => {
 
     const realizarLogOut = async e => {
         e.preventDefault();
@@ -28,6 +28,7 @@ const LoginForm = ({ setIsAuthenticated, myToken, history }) => {
                         'El usuario se deslogó correctamente',
                         'success'
                     );
+                setUsuario({});
 
                 // redirigimos al usuario a artículos
                 history.push( '/' );
@@ -48,7 +49,6 @@ const LoginForm = ({ setIsAuthenticated, myToken, history }) => {
 
     return(
         <form 
-            className="form-inline"
             onSubmit={ realizarLogOut }
         >
             <button type="submit" className="btn btn-primary mb-2">Logout</button>
