@@ -13,7 +13,11 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
         } = articulo;
 
     // const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fecha_creacion );
-
+    const fecha = new Date(fecha_creacion);
+    let day = fecha.getDate();
+    let month = fecha.getMonth();
+    let year = fecha.getFullYear();
+    const dateFormatted = day + '-' + month + '-' + year;
     return(
         <div className="col-12 col-md-6 col-lg-3 mb-3" key={ id }>
             <div className="card shadow align-items-strech justify-content-between">
@@ -29,7 +33,7 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
                 </div>
                 <div className="row p-3 mt-0">
                     <div className="col-12 pl-3 text-left">
-                        <small>{ fecha_creacion }</small>
+                        <small>{ dateFormatted }</small>
                     </div>
                 </div>
                 <div className="row p-3 mt-0">

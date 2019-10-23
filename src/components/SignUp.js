@@ -35,7 +35,7 @@ const SignUp = ({ history }) => {
                 responseType: 'json'
             });
             if( resultado.status === 201 ){
-                console.log('obtenemos el resultado con los datos de usuario creados');
+                console.log('obtenemos el resultado con los datos de usuario creado');
                 console.log(resultado.data);
                 Swal.fire(
                         'Usuario Creado',
