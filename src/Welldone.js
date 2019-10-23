@@ -60,6 +60,7 @@ function Welldone() {
                 render={ () => (
                   <Articulos
                     usuario={ usuario }
+                    isAuthenticated={ isAuthenticated }
                   />
                 ) } 
           />
