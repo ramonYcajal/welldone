@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
+import LogOutForm from './LoginOutForm';
 
-const Header = () => (
+const Header = ({ isAuthenticated, setIsAuthenticated }) => {
+
+    const [ myToken, setMyToken ] =  useState('');
+
+    return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
             <Link to="/" className="navbar-brand">
@@ -25,9 +30,20 @@ const Header = () => (
                     >Categorías</NavLink>
                 </li> */}
             </ul>
-            <LoginForm />
+            { !isAuthenticated &&
+                <LoginForm 
+                    setIsAuthenticated={ setIsAuthenticated }
+                    setMyToken={ setMyToken }
+                />
+            }
+            {isAuthenticated &&
+                <LogOutForm 
+                    setIsAuthenticated={ setIsAuthenticated }
+                    myToken={ myToken }
+                />
+            }
         </div>
     </nav>
-);
+)};
 
 export default Header;

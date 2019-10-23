@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LoginForm = () => {
+const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -28,7 +28,11 @@ const LoginForm = () => {
                 headers: headers
             });
 
+            setIsAuthenticated( true );
+
             console.log( resultado.data.auth_token )
+
+            setMyToken( resultado.data.auth_token );
 
         } catch( error ) {
             console.log( error );

@@ -26,6 +26,7 @@ function Welldone() {
   const [ usuario, setUsuario ] = useState( INITIAL_USER );
   const [ articulos, setArticulos ] = useState([]);
   const [ recargarArticulos, setRecargarArticulos ] = useState( true );
+  const [ isAuthenticated, setIsAuthenticated ] = useState( false );
 
   useEffect(() => {
     if( recargarArticulos ){
@@ -48,7 +49,10 @@ function Welldone() {
 
   return (
     <Router>
-      <Header />
+      <Header 
+        isAuthenticated={ isAuthenticated }
+        setIsAuthenticated={ setIsAuthenticated }
+      />
       <main className="container mt-5">
         <Switch>
           <Route exact path="/usuario/nuevo" 
