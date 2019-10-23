@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import ListaArticulosEdicion from './ListaArticulosEdicion';
 import Error from './Error';
@@ -33,9 +34,16 @@ const Productos = ({ usuario }) => {
         <Fragment>
             <h1 className="text-center">Listado de Artículos</h1>
             { (articulos.length === 0 ) &&
-                    <Error 
-                        mensaje='No tiene aún ningún artículo creado'
-                    />
+                    <div className="text-center">
+                        <Error 
+                            mensaje='No tiene ningún artículo creado'
+                        />
+                        <Link to="/articulos/nuevo" className="navbar-brand">
+                            <button className="btn btn-primary">Crear Nuevo Artículo</button>
+                        </Link>
+                    </div>
+
+                    
                 
             }
             <ul className="list-group mt-5">

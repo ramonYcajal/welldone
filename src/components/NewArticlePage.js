@@ -44,7 +44,12 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
 
         // creamos el nuevo articulo
         try{
-            const resultado = await axios.post( 'http://localhost:4000/articulos', {
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Token `
+              };
+
+            const resultado = await axios.post( 'http://api.elmoribundogarci.com/articulos/', {
             titulo,
             texto_introduccion: textoIntro,
             contenido,
@@ -175,7 +180,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                             className="form-check-input" 
                             type="radio" 
                             name="estado"
-                            value="borrador"
+                            value="DRF"
                             onChange={ getTypeArticle }
                         />
                         <label className="form-check-label">
@@ -187,7 +192,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                             className="form-check-input" 
                             type="radio" 
                             name="estado"
-                            value="publicado"
+                            value="PUB"
                             onChange={ getTypeArticle }
                         />
                         <label className="form-check-label">
