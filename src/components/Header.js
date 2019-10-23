@@ -15,13 +15,15 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                 WellDone
             </Link>
             <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                    <NavLink 
-                        to='/usuario/nuevo'
-                        className="nav-link"
-                        activeClassName="active"
-                    >Sign Up</NavLink>
-                </li>
+                { !isAuthenticated &&
+                    <li className="nav-item">
+                        <NavLink 
+                            to='/usuario/nuevo'
+                            className="nav-link"
+                            activeClassName="active"
+                        >Sign Up</NavLink>
+                    </li>
+                }
                 {/* <li className="nav-item">
                     <NavLink 
                         to='/categorias'

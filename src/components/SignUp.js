@@ -47,7 +47,7 @@ const SignUp = ({ history }) => {
             Swal.fire({
                 type: 'error',
                 title: 'Error',
-                text: 'No se ha podido dar el alta, vuelve a intentarlo'
+                text: 'No se ha podido dar el alta, vuelva a intentarlo'
             });
         }
 

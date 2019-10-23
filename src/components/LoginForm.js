@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
 
@@ -18,8 +19,6 @@ const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
             password
         }
 
-        console.log( authentication )
-
         try{
             const resultado = await axios({
                 method: 'post',
@@ -28,14 +27,24 @@ const LoginForm = ({ setIsAuthenticated, setMyToken }) => {
                 headers: headers
             });
 
-            setIsAuthenticated( true );
-
-            console.log( resultado.data.auth_token )
+            if( resultado.status === 200 ){
+                setIsAuthenticated( true );
+                Swal.fire(
+                        'Login Correcto',
+                        'El usuario se ha logado correctamente',
+                        'success'
+                    );
+            }
 
             setMyToken( resultado.data.auth_token );
 
         } catch( error ) {
             console.log( error );
+            Swal.fire({
+                type: 'error',
+                title: 'Error',
+                text: 'No se ha podido realizar el login, vuelva a intentarlo'
+            });
         }
         
     }
