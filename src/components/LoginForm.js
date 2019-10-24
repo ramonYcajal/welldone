@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { withRouter } from 'react-router-dom';
 
-const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
+const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario, history }) => {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -60,7 +61,10 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
                         username: userData.data.username,
                         id: userData.data.id,
                         token: resultado.data.auth_token
-                    })
+                    });
+
+                    // redirigimos al usuario a la home
+                    history.push( '/' );
                 }
             }
 
@@ -117,4 +121,4 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
     )
 }
 
-export default LoginForm;
+export default withRouter( LoginForm );
