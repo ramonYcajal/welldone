@@ -58,8 +58,6 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                 imagen
             }
 
-            console.log(data)
-
             const resultado = await axios({
                 method: 'post',
                 url: 'https://api.elmoribundogarci.com/articulos/',
@@ -97,7 +95,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
                 });
 
               } 
-            //console.log( error );            
+          
             Swal.fire({
                 type: 'error',
                 title: 'Error',
@@ -107,7 +105,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
         }
 
         // redirigimos al usuario a artículos
-        // history.push( '/' );
+        history.push( '/usuario/articulos' );
 
     }
 
