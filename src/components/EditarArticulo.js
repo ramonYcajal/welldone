@@ -9,8 +9,10 @@ import ListaCategorias from './ListaCategorias';
 
 const EditarArticulo = props => {
 
-    const { history, articulo, setRecargarArticulos } = props;
+    const token = new URLSearchParams(props.history.location.search).get( 't' );
 
+    const { history, articulo, setRecargarArticulos } = props;
+    
     // refs
     const tituloRef = useRef('');
     const textoIntroRef = useRef('');
@@ -48,6 +50,10 @@ const EditarArticulo = props => {
         setError( false );
 
         // obtenemos el resto de valores del formulario
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${ token }`
+          };
 
         const datosArticulo = {
             titulo : tituloRef.current.value,
@@ -58,13 +64,16 @@ const EditarArticulo = props => {
             imagen : imagenRef.current.value
         }
 
-        // const url = `http://localhost:4000/articulos/${ articulo.id }`;
-
         try{
-            const resultado = await axios.put({
+            const resultado = await axios({
                                     method: 'put',
                                     url: `https://api.elmoribundogarci.com/articulos/${ articulo.id }`,
-                                    data: datosArticulo
+                                    data: datosArticulo,
+                                    headers,
+                                    transformResponse: [function (data) {
+                                        return data;
+                                      }],
+                                    responseType: 'json'
                                 });
             
             if( resultado.status === 200 ){
@@ -81,13 +90,27 @@ const EditarArticulo = props => {
             }
 
         } catch( error ){
-            console.log( error );
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                var output = '';
+                var readErrors = Object.keys(error.response.data);
+                readErrors.forEach(function(givenError) {
+                var items = Object.keys(error.response.data[givenError]);
+                items.forEach(function(item) {
+                        var value = error.response.data[givenError][item];
+                        output += '<p>' + givenError+' : ' + value + '</p>';
+                    });
+                });
 
+              } 
+          
             Swal.fire({
                 type: 'error',
                 title: 'Error',
-                text: 'Hubo un error, vuelve a intentarlo'
-            })
+                html: output
+            });
         }
 
     }
@@ -197,7 +220,7 @@ const EditarArticulo = props => {
                             className="form-check-input" 
                             type="radio" 
                             name="estado"
-                            value="borrador"
+                            value="DRF"
                             onChange={ getTypeArticle }
                             defaultChecked={ ( articulo.estado === 'borrador' ) }
                         />
@@ -210,7 +233,7 @@ const EditarArticulo = props => {
                             className="form-check-input" 
                             type="radio" 
                             name="estado"
-                            value="publicado"
+                            value="PUB"
                             onChange={ getTypeArticle }
                             defaultChecked={ ( articulo.estado === 'publicado' ) }
                         />

@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const ListaArticulosEdicion = ({ articulo, setRecargarArticulos, usuario, history }) => {
 
-    // const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( articulo.fecha_creacion );
+    // const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year:   'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( articulo.fecha_creacion );
     const fecha = new Date(articulo.fecha_creacion);
     let day = fecha.getDate();
     let month = fecha.getMonth();
@@ -90,7 +90,7 @@ const ListaArticulosEdicion = ({ articulo, setRecargarArticulos, usuario, histor
             </p>
             <div>
                 <Link
-                    to={`/articulos/editar/${ articulo.id }`}
+                    to={`/articulos/editar/${ articulo.id }?t=${ usuario.token }`}
                     className="btn btn-success mr-2"
                 >Editar </Link>
                 <button

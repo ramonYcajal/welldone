@@ -16,7 +16,6 @@ const ArticleDetailPage = props => {
             
             setArticulo( resultado.data );
 
-            console.log(resultado.data)
         }
     
           consultarApi();
