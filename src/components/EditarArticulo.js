@@ -57,12 +57,15 @@ const EditarArticulo = props => {
             categoria : catArticulo,
             imagen : imagenRef.current.value
         }
-        
-        // enviamos el request
-        const url = `http://localhost:4000/articulos/${ articulo.id }`;
+
+        // const url = `http://localhost:4000/articulos/${ articulo.id }`;
 
         try{
-            const resultado = await axios.put( url, datosArticulo );
+            const resultado = await axios.put({
+                                    method: 'put',
+                                    url: `https://api.elmoribundogarci.com/articulos/${ articulo.id }`,
+                                    data: datosArticulo
+                                });
             
             if( resultado.status === 200 ){
                 Swal.fire(
@@ -92,14 +95,17 @@ const EditarArticulo = props => {
     useEffect(() => {
         // consultamos el API para obtener el listado de categorias
         const consultarCategoriasApi = async () => {
-            const resultado = await axios.get( 'http://localhost:4000/categorias' );
- 
+            const resultado = await axios({
+                method: 'get', 
+                url: 'https://api.elmoribundogarci.com/categorias/' 
+            });
+
             const categoriasFinal = [
                 {
-                    "categoria" : "Seleccione Categoría...",
-                    "id" : 0
+                "nombre" : "Seleccione Categoría...",
+                "id" : 0
                 },
-                ...resultado.data
+                ...resultado.data.results
             ]
 
             setCategorias( categoriasFinal );
@@ -176,7 +182,7 @@ const EditarArticulo = props => {
                                 return (
                                     <ListaCategorias
                                         key={ categoria.id }
-                                        categoria={ categoria.categoria }
+                                        categoria={ categoria }
                                     />
                                 );
                             })

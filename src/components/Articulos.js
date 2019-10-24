@@ -21,6 +21,7 @@ const Productos = ({ usuario }) => {
                                             });
 
             setArticulos( resultadoArticulos.data.results );
+            console.log(resultadoArticulos.data.results)
         }
 
         consultarApi();
@@ -51,6 +52,8 @@ const Productos = ({ usuario }) => {
                     <ListaArticulosEdicion
                         key={ articulo.id }
                         articulo={ articulo }
+                        usuario={ usuario }
+                        setRecargarArticulos={ setRecargarArticulos }
                     />
                 ))}
             </ul>

@@ -19,8 +19,8 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     const [ categoria, setCategoria ] = useState('');
     const [ categorias, setCategorias ] = useState([]);
 
-    const fechaPublicacion = Date.now();
-    const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fechaPublicacion );
+    // const fechaPublicacion = Date.now();
+    // const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( fechaPublicacion );
     
     const [ error, setError ] = useState( false );
 
