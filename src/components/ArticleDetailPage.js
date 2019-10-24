@@ -24,7 +24,11 @@ const ArticleDetailPage = props => {
        
       }, [ idArticulo ]);
 
-      //console.log(articulo.comentarios)
+      const fecha = new Date(articulo.fecha_creacion);
+      let day = fecha.getDate();
+      let month = fecha.getMonth();
+      let year = fecha.getFullYear();
+      const dateFormatted = day + '-' + month + '-' + year;
 
     return(
         <div className="row mx-0 pb-3 px-0 wrapper-info">
@@ -39,15 +43,8 @@ const ArticleDetailPage = props => {
                         <span className="d-block w-100">{ articulo.titulo }</span>
                         <small className="d-block w-100 tagline-text">{ articulo.nombre }</small>
                     </div>
-                    {/* <div className="text-right mr-2">
-                        {
-                            props.details.genres.map(genre=>
-                                <span className="badge badge-secondary mr-1" key={genre.id}>{genre.name}</span>
-                            )
-                        }
-                    </div> */}
                     <div className="m-0 p-3 text-right">
-                        <small>{ articulo.fecha_creacion }</small>
+                        <small>{ dateFormatted }</small>
                     </div>
                     <div className="m-0 p-3 text-justify">
                         <h4>Contenido</h4>

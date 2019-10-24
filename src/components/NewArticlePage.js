@@ -35,7 +35,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     const AgregarArticulo = async e => {
         e.preventDefault();
 
-        if( titulo === '' || textoIntro === '' || tipoArticulo === '' || categoria === '' || categoria === 'Seleccione Categoría...' || imagen === '' || contenido === ''){
+        if( titulo === '' || textoIntro === '' || tipoArticulo === '' || categoria === '' || categoria === 'Seleccione Categoría...' || contenido === ''){
             setError( true );
             return;
         }

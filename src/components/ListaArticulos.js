@@ -33,7 +33,7 @@ const ListaArticulos = ({ articulo, setRecargarArticulo }) => {
                 </div>
                 <div className="row p-3 mt-0">
                     <div className="col-12 pl-3 text-left">
-                        <small>{ dateFormatted }</small>
+                        <small>{ dateFormatted } </small>
                     </div>
                 </div>
                 <div className="row p-3 mt-0">
