@@ -34,6 +34,15 @@ const Header = ({ isAuthenticated, setIsAuthenticated, usuario, setUsuario }) =>
                     >Mis Artículos</NavLink>
                 </li>
                 }
+                { isAuthenticated &&
+                <li className="nav-item">
+                    <NavLink 
+                        to='/articulos/nuevo'
+                        className="nav-link"
+                        activeClassName="active"
+                    >Escribir Artículo</NavLink>
+                </li>
+                }
             </ul>
             { isAuthenticated &&
                     <WellcomeUser
