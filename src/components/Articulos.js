@@ -21,7 +21,7 @@ const Productos = ({ usuario }) => {
                                             });
 
             setArticulos( resultadoArticulos.data.results );
-            console.log(resultadoArticulos.data.results)
+
         }
 
         consultarApi();

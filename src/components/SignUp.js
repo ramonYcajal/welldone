@@ -61,7 +61,7 @@ const SignUp = ({ history }) => {
                 });
 
               } 
-            //console.log( error );            
+           
             Swal.fire({
                 type: 'error',
                 title: 'Error',
