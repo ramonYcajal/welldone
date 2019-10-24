@@ -22,7 +22,7 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
         try{
             const resultado = await axios({
                 method: 'post',
-                url: 'http://api.elmoribundogarci.com/api/auth/token/login/', 
+                url: 'https://api.elmoribundogarci.com/api/auth/token/login/', 
                 data: authentication, 
                 headers: headers,
                 transformResponse: [function (data) {
@@ -42,7 +42,7 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
     
                 const userData = await axios({
                     method: 'get',
-                    url: 'http://api.elmoribundogarci.com/api/auth/users/me/', 
+                    url: 'https://api.elmoribundogarci.com/api/auth/users/me/', 
                     headers: userHeaders
                 });
 
@@ -51,7 +51,7 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario }) => {
 
                     Swal.fire(
                             'Login Correcto',
-                            'El usuario se ha logado correctamente',
+                            `Bienvenido ${ userData.data.username }!`,
                             'success'
                         );
                     setMyToken( resultado.data.auth_token );

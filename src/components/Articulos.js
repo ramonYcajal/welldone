@@ -17,7 +17,7 @@ const Productos = ({ usuario }) => {
             // realizamos la consulta al API
             const resultadoArticulos = await axios({ 
                                                 method: 'get',
-                                                url: `http://api.elmoribundogarci.com/articulos/?usuario=${ usuario.id }` 
+                                                url: `https://api.elmoribundogarci.com/articulos/?usuario=${ usuario.id }` 
                                             });
 
             setArticulos( resultadoArticulos.data.results );

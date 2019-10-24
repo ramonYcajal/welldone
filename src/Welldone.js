@@ -28,7 +28,7 @@ function Welldone() {
         // realizamos la consulta al API
         const resultadoArticulos = await axios({ 
                                             method: 'get',
-                                            url: 'http://api.elmoribundogarci.com/articulos/?page=1' 
+                                            url: 'https://api.elmoribundogarci.com/articulos/?page=1' 
                                           });
 
         setArticulos( resultadoArticulos.data.results );

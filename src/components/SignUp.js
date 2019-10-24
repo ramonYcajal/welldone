@@ -26,7 +26,7 @@ const SignUp = ({ history }) => {
         try{
             const resultado = await axios({
                 method: 'post',
-                url: 'http://api.elmoribundogarci.com/api/auth/users/', 
+                url: 'https://api.elmoribundogarci.com/api/auth/users/', 
                 data: authentication, 
                 headers: headers,
                 transformResponse: [function (data) {

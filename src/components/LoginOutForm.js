@@ -17,7 +17,7 @@ const LoginForm = ({ setIsAuthenticated, myToken, setUsuario,  history }) => {
         try{
             const resultado = await axios({
                 method: 'post',
-                url: 'http://api.elmoribundogarci.com/api/auth/token/logout/', 
+                url: 'https://api.elmoribundogarci.com/api/auth/token/logout/', 
                 headers: headers
             });
 

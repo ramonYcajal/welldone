@@ -62,7 +62,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
 
             const resultado = await axios({
                 method: 'post',
-                url: 'http://api.elmoribundogarci.com/articulos/',
+                url: 'https://api.elmoribundogarci.com/articulos/',
                 data,
                 headers,
                 transformResponse: [function (data) {
@@ -114,7 +114,10 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     useEffect(() => {
         // consultamos el API para obtener el listado de categorias
         const consultarCategoriasApi = async () => {
-            const resultado = await axios.get( 'http://api.elmoribundogarci.com/categorias/' );
+            const resultado = await axios({
+                                    method: 'get', 
+                                    url: 'https://api.elmoribundogarci.com/categorias/' 
+                                });
  
             const categoriasFinal = [
                 {

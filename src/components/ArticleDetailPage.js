@@ -12,7 +12,7 @@ const ArticleDetailPage = props => {
 
         const consultarApi = async () => {
             // realizamos la consulta al API
-            const resultado = await axios.get( `http://api.elmoribundogarci.com/articulos/${ idArticulo }` );
+            const resultado = await axios.get( `https://api.elmoribundogarci.com/articulos/${ idArticulo }` );
             console.log(resultado)
             setArticulo( resultado.data );
         }
