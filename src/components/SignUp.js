@@ -1,10 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
-const SignUp = ({ history }) => {
-    
+const SignUp = ({ history, isAuthenticated }) => {
 
     const [ username, setUsername ] = useState('');
     const [ email, setEmail ] = useState('');
@@ -68,8 +67,10 @@ const SignUp = ({ history }) => {
                 html: output
             });
         }
+    }
 
-        
+    if( isAuthenticated ){
+        return <Redirect to='/' />
     }
 
     return(

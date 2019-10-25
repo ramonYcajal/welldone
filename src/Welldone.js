@@ -54,7 +54,9 @@ function Welldone() {
         <Switch>
           <Route exact path="/usuario/nuevo" 
                 render={ () => (
-                  <SignUpPage />
+                  <SignUpPage 
+                    isAuthenticated
+                  />
                 ) } 
           />
           <Route exact path="/usuario/articulos" 
