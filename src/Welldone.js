@@ -61,6 +61,7 @@ function Welldone() {
                   <Articulos
                     usuario={ usuario }
                     isAuthenticated={ isAuthenticated }
+                    setRecargarArticulos={ setRecargarArticulos }
                   />
                 ) } 
           />

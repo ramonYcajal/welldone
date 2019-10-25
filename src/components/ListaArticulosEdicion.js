@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const ListaArticulosEdicion = ({ articulo, setRecargarArticulos, usuario, history }) => {
+const ListaArticulosEdicion = ({ articulo, setRecargarArticulos, setRecargarArticulosUsuario, usuario, history }) => {
 
     // const fechaFormateada = new Intl.DateTimeFormat('es-ES', {year:   'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format( articulo.fecha_creacion );
     const fecha = new Date(articulo.fecha_creacion);
@@ -47,6 +47,7 @@ const ListaArticulosEdicion = ({ articulo, setRecargarArticulos, usuario, histor
                             'success'
                         );
                         setRecargarArticulos( true );
+                        setRecargarArticulosUsuario( true );
 
                         // redirigimos al usuario a artículos
                         history.push( '/usuario/articulos' );
@@ -76,6 +77,7 @@ const ListaArticulosEdicion = ({ articulo, setRecargarArticulos, usuario, histor
                     });
 
                     setRecargarArticulos( false );
+                    setRecargarArticulosUsuario( false );
                 }
                 
                 

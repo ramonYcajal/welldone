@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import ListaArticulosEdicion from './ListaArticulosEdicion';
 import Error from './Error';
 
-const Productos = ({ usuario }) => {
+const Productos = ({ usuario, setRecargarArticulos }) => {
 
     //state
     const [ articulos, setArticulos ] = useState([]);
-    const [ recargarArticulos, setRecargarArticulos ] = useState( true );
+    const [ recargarArticulosUsuario, setRecargarArticulosUsuario ] = useState( true );
 
     useEffect(() => {
-        if( recargarArticulos ){
+        if( recargarArticulosUsuario ){
         const consultarApi = async () => {
             // realizamos la consulta al API
             const resultadoArticulos = await axios({ 
@@ -27,9 +27,9 @@ const Productos = ({ usuario }) => {
         consultarApi();
 
         // cambiamos a false la recarga de articulos para que no este recargando continuamente
-        setRecargarArticulos( false );
+        setRecargarArticulosUsuario( false );
         }
-    }, [ recargarArticulos, usuario.id ]);
+    }, [ recargarArticulosUsuario, usuario.id ]);
 
     return(
         <Fragment>
@@ -54,6 +54,7 @@ const Productos = ({ usuario }) => {
                         articulo={ articulo }
                         usuario={ usuario }
                         setRecargarArticulos={ setRecargarArticulos }
+                        setRecargarArticulosUsuario={ setRecargarArticulosUsuario }
                     />
                 ))}
             </ul>
