@@ -1,18 +1,19 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import ListaArticulosEdicion from './ListaArticulosEdicion';
 import Error from './Error';
 
-const Productos = ({ usuario, setRecargarArticulos }) => {
+const Articulos = ({ usuario, setRecargarArticulos, isAuthenticated }) => {
 
     //state
     const [ articulos, setArticulos ] = useState([]);
     const [ recargarArticulosUsuario, setRecargarArticulosUsuario ] = useState( true );
 
     useEffect(() => {
-        if( recargarArticulosUsuario ){
+        
+        if( recargarArticulosUsuario && isAuthenticated ){
         const consultarApi = async () => {
             // realizamos la consulta al API
             const resultadoArticulos = await axios({ 
@@ -29,7 +30,11 @@ const Productos = ({ usuario, setRecargarArticulos }) => {
         // cambiamos a false la recarga de articulos para que no este recargando continuamente
         setRecargarArticulosUsuario( false );
         }
-    }, [ recargarArticulosUsuario, usuario.id ]);
+    }, [ recargarArticulosUsuario, usuario.id, isAuthenticated ]);
+
+    if( !isAuthenticated ){
+        return <Redirect to='/' />
+    }
 
     return(
         <Fragment>
@@ -62,4 +67,4 @@ const Productos = ({ usuario, setRecargarArticulos }) => {
     )
 }
 
-export default Productos;
+export default Articulos;
