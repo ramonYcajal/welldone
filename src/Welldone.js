@@ -13,6 +13,7 @@ import CategoriesPage from './components/CategoriesPage';
 import NewArticlePage from './components/NewArticlePage';
 import EditarArticulo from './components/EditarArticulo';
 import Articulos from './components/Articulos';
+import Page404 from './components/Page404';
 
 function Welldone() {
 
@@ -102,6 +103,7 @@ function Welldone() {
                     setRecargarArticulos={ setRecargarArticulos }
                    />
                  ) }  />
+          <Route component={ Page404 } />
         </Switch>
       </main>
     </Router>
