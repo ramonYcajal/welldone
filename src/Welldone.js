@@ -5,7 +5,7 @@ import axios from 'axios';
 // components
 import Header from './components/Header';
 import HomePage from './components/HomePage';
-import SignUpPage from './components/SignUp';
+import SignUp from './components/SignUp';
 import ArticleDetailPage from './components/ArticleDetailPage';
 import UserDetailPage from './components/UserDetailPage';
 import UserUpdate from './components/UserUpdate';
@@ -54,8 +54,8 @@ function Welldone() {
         <Switch>
           <Route exact path="/usuario/nuevo" 
                 render={ () => (
-                  <SignUpPage 
-                    isAuthenticated
+                  <SignUp 
+                    isAuthenticated={ isAuthenticated }
                   />
                 ) } 
           />
