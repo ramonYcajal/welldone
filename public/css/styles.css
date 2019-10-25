@@ -1,0 +1,22 @@
+/* resetear body*/
+body{
+    margin:0;
+    padding: 0;
+}
+
+.ficha{
+    transition: transform 0.3s;
+    
+
+}
+.ficha:hover{
+    transform: translateY(-10px);
+
+}
+a:hover{
+    text-decoration: none;
+}
+p, small{
+    color:black;
+}
+ 
