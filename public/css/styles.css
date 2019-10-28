@@ -23,4 +23,8 @@ p, small{
     max-width: 10rem;
     position: relative;
 }
+.imgArticle{
+    border-radius:.5rem;
+    box-shadow: 7px 7px 19px #5d5d5d59;
+}
  
