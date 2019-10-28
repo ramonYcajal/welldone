@@ -7,7 +7,7 @@ const LoginForm = ({ setIsAuthenticated, myToken, setUsuario,  history }) => {
 
     const realizarLogOut = async e => {
         e.preventDefault();
-        const token = `Token ${ myToken }`;
+        const token = `Token ${ myToken || JSON.parse( sessionStorage.getItem( 'WellDone' ) ).usrToken }`;
 
         const headers = {
             'Content-Type': 'application/json',
@@ -28,7 +28,9 @@ const LoginForm = ({ setIsAuthenticated, myToken, setUsuario,  history }) => {
                         'El usuario se deslogó correctamente',
                         'success'
                     );
+                // limpiamos state y sesiones guardadas
                 setUsuario({});
+                sessionStorage.removeItem('WellDone');
 
                 // redirigimos al usuario a artículos
                 history.push( '/' );
