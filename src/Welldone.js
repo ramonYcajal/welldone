@@ -56,7 +56,7 @@ function Welldone() {
           username: sessionData.usrName,
           id: sessionData.usrId,
           token: sessionData.usrToken
-      });
+        });
       } 
 
     }
@@ -83,7 +83,9 @@ function Welldone() {
                 render={ () => (
                   <Articulos
                     usuario={ usuario }
+                    setUsuario={ setUsuario }
                     isAuthenticated={ isAuthenticated }
+                    setIsAuthenticated={ setIsAuthenticated }
                     setRecargarArticulos={ setRecargarArticulos }
                   />
                 ) } 
@@ -93,6 +95,9 @@ function Welldone() {
                  render={() => (
                    <NewArticlePage
                     usuario={ usuario }
+                    setUsuario={ setUsuario }
+                    isAuthenticated={ isAuthenticated }
+                    setIsAuthenticated={ setIsAuthenticated }
                     setRecargarArticulos={ setRecargarArticulos }
                    />
                  )

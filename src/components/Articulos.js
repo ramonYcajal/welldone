@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import ListaArticulosEdicion from './ListaArticulosEdicion';
 import Error from './Error';
 
-const Articulos = ({ usuario, setRecargarArticulos, isAuthenticated }) => {
+const Articulos = ({ usuario, setUsuario, setRecargarArticulos, isAuthenticated, setIsAuthenticated }) => {
 
     //state
     const [ articulos, setArticulos ] = useState([]);
@@ -32,7 +32,19 @@ const Articulos = ({ usuario, setRecargarArticulos, isAuthenticated }) => {
         }
     }, [ recargarArticulosUsuario, usuario.id, isAuthenticated ]);
 
-    if( !isAuthenticated ){
+    // Comprobamos si ya hay un sesión creada y no estoy autenticado porque me han refrescado el navegador
+    if (sessionStorage.getItem("WellDone") && isAuthenticated === false ) {
+        setIsAuthenticated( true );
+        const sessionData = JSON.parse( sessionStorage.getItem( 'WellDone' ) );
+
+        setUsuario({
+          username: sessionData.usrName,
+          id: sessionData.usrId,
+          token: sessionData.usrToken
+        });
+      }
+
+    if( !isAuthenticated && !sessionStorage.getItem("WellDone") ){
         return <Redirect to='/' />
     }
 
