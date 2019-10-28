@@ -46,7 +46,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
         try{
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${ usuario.token }`
+                'Authorization': `Token ${ usuario.token || JSON.parse( sessionStorage.getItem( 'WellDone' ) ).usrToken }`
               };
 
             const data = {
