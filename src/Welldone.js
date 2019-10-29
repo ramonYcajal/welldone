@@ -5,7 +5,7 @@ import axios from 'axios';
 // components
 import Header from './components/Header';
 import HomePage from './components/HomePage';
-import SignUpPage from './components/SignUp';
+import SignUp from './components/SignUp';
 import ArticleDetailPage from './components/ArticleDetailPage';
 import UserDetailPage from './components/UserDetailPage';
 import UserUpdate from './components/UserUpdate';
@@ -23,6 +23,13 @@ function Welldone() {
   const [ recargarArticulos, setRecargarArticulos ] = useState( true );
   const [ isAuthenticated, setIsAuthenticated ] = useState( false );
 
+  // console.log('IsAuthenticated', sessionStorage.getItem('welldoneIsAuthenticated'));
+  // if( sessionStorage.getItem('welldoneIsAuthenticated') === null ){
+  //   let varBool = false;
+  // } else {
+  //   console.log( 'El null NO es nulo' )
+  // }
+
   useEffect(() => {
     if( recargarArticulos ){
       const consultarApi = async () => {
@@ -39,8 +46,21 @@ function Welldone() {
 
       // cambiamos a false la recarga de articulos para que no este recargando continuamente
       setRecargarArticulos( false );
+
+      // Comprobamos si ya hay un sesión creada y no estoy autenticado porque me han refrescado el navegador
+      if (sessionStorage.getItem("WellDone") && isAuthenticated === false ) {
+        setIsAuthenticated( true );
+        const sessionData = JSON.parse( sessionStorage.getItem( 'WellDone' ) );
+
+        setUsuario({
+          username: sessionData.usrName,
+          id: sessionData.usrId,
+          token: sessionData.usrToken
+        });
+      } 
+
     }
-  }, [ recargarArticulos ]);
+  }, [ recargarArticulos, isAuthenticated ]);
 
   return (
     <Router>
@@ -54,8 +74,8 @@ function Welldone() {
         <Switch>
           <Route exact path="/usuario/nuevo" 
                 render={ () => (
-                  <SignUpPage 
-                    isAuthenticated
+                  <SignUp 
+                    isAuthenticated={ isAuthenticated }
                   />
                 ) } 
           />
@@ -63,7 +83,9 @@ function Welldone() {
                 render={ () => (
                   <Articulos
                     usuario={ usuario }
+                    setUsuario={ setUsuario }
                     isAuthenticated={ isAuthenticated }
+                    setIsAuthenticated={ setIsAuthenticated }
                     setRecargarArticulos={ setRecargarArticulos }
                   />
                 ) } 
@@ -73,6 +95,9 @@ function Welldone() {
                  render={() => (
                    <NewArticlePage
                     usuario={ usuario }
+                    setUsuario={ setUsuario }
+                    isAuthenticated={ isAuthenticated }
+                    setIsAuthenticated={ setIsAuthenticated }
                     setRecargarArticulos={ setRecargarArticulos }
                    />
                  )

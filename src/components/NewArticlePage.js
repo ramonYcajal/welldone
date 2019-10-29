@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';    
 
 import Error from './Error';
 import ListaCategorias from './ListaCategorias';
 
 
-const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
+const NewArticlePage = ({ history, setRecargarArticulos, usuario, setUsuario, isAuthenticated, setIsAuthenticated }) => {
 
 
     //state
@@ -46,7 +46,7 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
         try{
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${ usuario.token }`
+                'Authorization': `Token ${ usuario.token || JSON.parse( sessionStorage.getItem( 'WellDone' ) ).usrToken }`
               };
 
             const data = {
@@ -112,6 +112,8 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
     useEffect(() => {
         // consultamos el API para obtener el listado de categorias
         const consultarCategoriasApi = async () => {
+            // let isSubscribed = true;
+
             const resultado = await axios({
                                     method: 'get', 
                                     url: 'https://api.elmoribundogarci.com/categorias/' 
@@ -126,12 +128,35 @@ const NewArticlePage = ({ history, setRecargarArticulos, usuario }) => {
             ]
 
             setCategorias( categoriasFinal );
+
+            // if (isSubscribed) {
+            //     setCategorias( categoriasFinal );
+            // }
+
+            // return () => isSubscribed = false;
         }
+
+        
 
         consultarCategoriasApi();
 
+    }, [ isAuthenticated, setIsAuthenticated, setUsuario ]);
 
-    }, [ ])
+    // // Comprobamos si ya hay un sesión creada y no estoy autenticado porque me han refrescado el navegador
+    // if (sessionStorage.getItem("WellDone") && isAuthenticated === false ) {
+    //     setIsAuthenticated( true );
+    //     const sessionData = JSON.parse( sessionStorage.getItem( 'WellDone' ) );
+
+    //     setUsuario({
+    //     username: sessionData.usrName,
+    //     id: sessionData.usrId,
+    //     token: sessionData.usrToken
+    //     });
+    // }
+
+    // if( !isAuthenticated && !sessionStorage.getItem("WellDone") ){
+    //     return <Redirect to='/' />
+    // }
 
     return(
         <div className="col-md-8 mx-auto ">

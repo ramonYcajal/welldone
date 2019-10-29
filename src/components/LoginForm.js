@@ -55,6 +55,7 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario, history }) => {
                             `Bienvenido ${ userData.data.username }!`,
                             'success'
                         );
+
                     setMyToken( resultado.data.auth_token );
                     
                     setUsuario({
@@ -62,6 +63,17 @@ const LoginForm = ({ setIsAuthenticated, setMyToken, setUsuario, history }) => {
                         id: userData.data.id,
                         token: resultado.data.auth_token
                     });
+
+                    // Guardamos los datos de usuario en la sesión
+                    sessionStorage.setItem(
+                            'WellDone',
+                            JSON.stringify({
+                                'usrToken': resultado.data.auth_token,
+                                'usrName': userData.data.username,
+                                'usrId': userData.data.id
+                            }
+                        )
+                    )
 
                     // redirigimos al usuario a la home
                     history.push( '/' );
